@@ -1,0 +1,6 @@
+Flask>=3.0
+flask-cors>=4.0
+Pillow>=10.0
+numpy>=1.26
+transformers>=4.45
+torch>=2.2
