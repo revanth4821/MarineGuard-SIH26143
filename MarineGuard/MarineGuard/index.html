@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MarineGuard | Maritime Intelligence</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-wave">🌊</span>
+            <span>MarineGuard</span>
+        </div>
+
+        <p class="tagline">
+            MARITIME INTELLIGENCE PLATFORM
+        </p>
+
+        <nav>
+
+            <button class="nav-item active"
+                onclick="showSection('dashboard')">
+                <span>◈</span>
+                <span>Command Center</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="showSection('satellite')">
+                <span>◉</span>
+                <span>Satellite Intelligence</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="showSection('vessels')">
+                <span>◇</span>
+                <span>Vessel Intelligence</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="showSection('investigation')">
+                <span>◎</span>
+                <span>Incident Reconstruction</span>
+            </button>
+
+            <button class="nav-item"
+                onclick="showSection('reports')">
+                <span>▣</span>
+                <span>Investigation Report</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span>●</span>
+                SYSTEM ONLINE
+            </div>
+
+            <small>
+                MARINEGUARD PROTOTYPE · SIH 2026
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard"
+            class="page-section active-section">
+
+            <div class="top-header">
+
+                <div>
+                    <p class="eyebrow">
+                        MARINEGUARD / COMMAND CENTER
+                    </p>
+
+                    <h1>
+                        Maritime Investigation
+                    </h1>
+
+                    <p>
+                        Satellite intelligence and AIS correlation
+                        for oil-spill investigation.
+                    </p>
+                </div>
+
+                <div class="header-status">
+                    🟢 SYSTEM ONLINE
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">🛢️</span>
+
+                    <div>
+                        <p>DETECTED SLICK</p>
+
+                        <h2 id="slickInfo">
+                            12.4 km²
+                            <br>
+                            <small>Confidence: 93%</small>
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">🚢</span>
+
+                    <div>
+                        <p>VESSELS ANALYZED</p>
+
+                        <h2 id="vesselInfo">
+                            17
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">🎯</span>
+
+                    <div>
+                        <p>ORIGIN CONFIDENCE</p>
+
+                        <h2 id="originInfo">
+                            86%
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">⚠️</span>
+
+                    <div>
+                        <p>INCIDENT STATUS</p>
+
+                        <h2>
+                            Under Review
+                        </h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="card">
+
+                <h2>
+                    Investigation Control
+                </h2>
+
+                <p class="section-description">
+                    Follow the investigation pipeline from
+                    satellite detection to vessel correlation.
+                </p>
+
+                <div class="action-grid">
+
+                    <button onclick="showSection('satellite')">
+                        🛰️ Analyze Satellite
+                    </button>
+
+                    <button onclick="showSection('vessels')">
+                        🚢 Analyze Vessels
+                    </button>
+
+                    <button onclick="showSection('investigation')">
+                        🔎 Reconstruct Incident
+                    </button>
+
+                    <button onclick="showSection('reports')">
+                        📄 Generate Report
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PIPELINE -->
+
+            <div class="card">
+
+                <h2>
+                    Investigation Pipeline
+                </h2>
+
+                <p class="section-description">
+                    MarineGuard connects multiple intelligence
+                    stages into a single investigation workflow.
+                </p>
+
+                <div class="status-steps">
+
+                    <div class="status-step active">
+                        <span>01</span>
+                        <p>Satellite</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step active">
+                        <span>02</span>
+                        <p>Slick</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>03</span>
+                        <p>Origin</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>04</span>
+                        <p>Vessels</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>05</span>
+                        <p>Report</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SATELLITE ================= -->
+
+        <section id="satellite"
+            class="page-section">
+
+            <div class="top-header">
+
+                <div>
+                    <p class="eyebrow">
+                        INTELLIGENCE MODULE / 01
+                    </p>
+
+                    <h1>
+                        Satellite Intelligence
+                    </h1>
+
+                    <p>
+                        Detect and characterize potential
+                        oil slicks from satellite imagery.
+                    </p>
+                </div>
+
+                <div class="header-status">
+                    🛰️ READY
+                </div>
+
+            </div>
+
+
+            <div class="satellite-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>
+                            Satellite Image Analysis
+                        </h2>
+
+                        <p>
+                            Upload JPG, JPEG or PNG imagery
+                            to begin the prototype analysis.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="upload-box">
+
+                    <div class="satellite-icon">
+                        🛰️
+                    </div>
+
+                    <h3>
+                        Upload Satellite Imagery
+                    </h3>
+
+                    <p>
+                        Select an image to preview and analyze.
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/png,image/jpeg"
+                    >
+
+
+                    <label
+                        for="imageInput"
+                        class="file-button"
+                    >
+                        📁 Choose Satellite Image
+                    </label>
+
+
+                    <button onclick="analyzeImage()">
+                        🔍 Run Satellite Analysis
+                    </button>
+
+                </div>
+
+
+                <div id="imagePreview"></div>
+
+                <div id="analysisResult"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= VESSELS ================= -->
+
+        <section id="vessels"
+            class="page-section">
+
+            <div class="top-header">
+
+                <div>
+                    <p class="eyebrow">
+                        INTELLIGENCE MODULE / 02
+                    </p>
+
+                    <h1>
+                        Vessel Intelligence
+                    </h1>
+
+                    <p>
+                        Correlate vessel trajectories with
+                        the reconstructed spill event.
+                    </p>
+                </div>
+
+                <div class="header-status">
+                    🚢 AIS ANALYSIS
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    AIS Correlation Engine
+                </h2>
+
+                <p class="section-description">
+                    MarineGuard compares vessel proximity,
+                    temporal overlap and trajectory similarity
+                    to rank potential vessels.
+                </p>
+
+
+                <button onclick="analyzeVessels()">
+                    🚢 Run Vessel Correlation
+                </button>
+
+
+                <div
+                    id="vesselResults"
+                    class="results-box"
+                >
+
+                    <div class="empty-state">
+                        No vessel analysis performed yet.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>
+                    Vessel Correlation Overview
+                </h2>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>VESSEL</th>
+                                <th>DISTANCE</th>
+                                <th>TIME MATCH</th>
+                                <th>TRAJECTORY</th>
+                                <th>SCORE</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>MV Ocean Star</td>
+                                <td>8.2 km</td>
+                                <td>92%</td>
+                                <td>87%</td>
+                                <td><b>91%</b></td>
+                            </tr>
+
+                            <tr>
+                                <td>Sea Voyager</td>
+                                <td>15.4 km</td>
+                                <td>76%</td>
+                                <td>71%</td>
+                                <td><b>74%</b></td>
+                            </tr>
+
+                            <tr>
+                                <td>Blue Horizon</td>
+                                <td>29.1 km</td>
+                                <td>43%</td>
+                                <td>52%</td>
+                                <td><b>48%</b></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= INVESTIGATION ================= -->
+
+        <section id="investigation"
+            class="page-section">
+
+            <div class="top-header">
+
+                <div>
+                    <p class="eyebrow">
+                        INTELLIGENCE MODULE / 03
+                    </p>
+
+                    <h1>
+                        Incident Reconstruction
+                    </h1>
+
+                    <p>
+                        Reconstruct the spill origin and visualize
+                        vessel movement across the incident area.
+                    </p>
+                </div>
+
+                <div class="header-status">
+                    🗺️ LIVE MAP
+                </div>
+
+            </div>
+
+
+            <!-- MAP -->
+
+            <div class="card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>
+                            Geospatial Investigation
+                        </h2>
+
+                        <p>
+                            Slick location, vessel positions
+                            and reconstructed drift path.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div id="map"></div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="card">
+
+                <h2>
+                    Investigation Controls
+                </h2>
+
+                <p class="section-description">
+                    Execute the main reconstruction stages
+                    of the MarineGuard investigation pipeline.
+                </p>
+
+
+                <div class="action-grid">
+
+                    <button onclick="reconstructOrigin()">
+                        🔴 Reconstruct Origin
+                    </button>
+
+                    <button onclick="analyzeVessels()">
+                        🚢 Correlate Vessels
+                    </button>
+
+                    <button onclick="playIncident()">
+                        ▶️ Replay Incident
+                    </button>
+
+                    <button onclick="generateReport()">
+                        📄 Generate Evidence Report
+                    </button>
+
+                </div>
+
+
+                <div id="incidentStatus">
+                    ● Ready for investigation
+                </div>
+
+            </div>
+
+
+            <!-- PIPELINE STATUS -->
+
+            <div class="card">
+
+                <h2>
+                    Investigation Progress
+                </h2>
+
+                <div class="status-steps">
+
+                    <div class="status-step active">
+                        <span>01</span>
+                        <p>Satellite</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step active">
+                        <span>02</span>
+                        <p>Slick</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>03</span>
+                        <p>Origin</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>04</span>
+                        <p>Vessels</p>
+                    </div>
+
+                    <div class="status-line"></div>
+
+                    <div class="status-step">
+                        <span>05</span>
+                        <p>Report</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= REPORT ================= -->
+
+        <section id="reports"
+            class="page-section">
+
+            <div class="top-header">
+
+                <div>
+                    <p class="eyebrow">
+                        INTELLIGENCE MODULE / 04
+                    </p>
+
+                    <h1>
+                        Investigation Report
+                    </h1>
+
+                    <p>
+                        Consolidated evidence and analysis
+                        generated by MarineGuard.
+                    </p>
+                </div>
+
+                <div class="header-status">
+                    📄 REPORT CENTER
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>
+                            Incident Evidence Report
+                        </h2>
+
+                        <p>
+                            Generate a concise investigation summary.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <button onclick="generateReport()">
+                    📄 Generate Investigation Report
+                </button>
+
+
+                <div
+                    id="report"
+                    class="report-box"
+                >
+
+                    <div class="empty-state">
+                        No report generated yet.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= LEAFLET ================= -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- ================= YOUR JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<script>
+
+function showSection(sectionId) {
+
+    const sections =
+        document.querySelectorAll(".page-section");
+
+    sections.forEach(function(section) {
+        section.classList.remove("active-section");
+    });
+
+
+    const selected =
+        document.getElementById(sectionId);
+
+    if (selected) {
+        selected.classList.add("active-section");
+    }
+
+
+    const navItems =
+        document.querySelectorAll(".nav-item");
+
+    navItems.forEach(function(item) {
+        item.classList.remove("active");
+    });
+
+
+    /*
+     * Find the navigation button that opens
+     * the selected section.
+     */
+
+    navItems.forEach(function(item) {
+
+        const onclickValue =
+            item.getAttribute("onclick");
+
+        if (
+            onclickValue &&
+            onclickValue.includes("'" + sectionId + "'")
+        ) {
+            item.classList.add("active");
+        }
+
+    });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    /*
+     * Leaflet needs to recalculate its size
+     * when the map section becomes visible.
+     */
+
+    if (sectionId === "investigation") {
+
+        setTimeout(function() {
+
+            if (typeof map !== "undefined") {
+                map.invalidateSize();
+            }
+
+        }, 300);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
